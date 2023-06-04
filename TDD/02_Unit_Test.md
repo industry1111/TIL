@@ -32,6 +32,44 @@ void helloDto가_리턴된다() throws Exception {
     }
 ```
 
+## TestRestTemplate
+- RestTemplate은 REST API를 호출할 때 사용하는 Spring Framework에서 제공하는 클래스
+- `spring-boot-starter-test`에 포함되어 있어 별도의 의존성 추가가 필요 없음
+- `@WebMvcTest`는 JPA 기능이 작동하지 않음 JPA와 같이 사용 할 시 `@SpringBootTest`와 `TestRestTemplate`을 사용
+- `TestRestTemplate`은 `@Autowired`로 주입 받음
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class PostsApiControllerTest {
+
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Test
+    public void Posts_등록된다() throws Exception {
+        //given
+        String title = "title";
+        String content = "content";
+        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+                .title(title)
+                .content(content)
+                .author("author")
+                .build();
+
+        String url = "http://localhost:" + port + "/api/v1/posts";
+
+        //when
+        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
+
+        //then
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody()).isGreaterThan(0L);
+
+        List<Posts> all = postsRepository.findAll();
+        assertThat(all.get(0).getTitle()).isEqualTo(title);
+        assertThat(all.get(0).getContent()).isEqualTo(content);
+    }
+}
+```
 
     
  
