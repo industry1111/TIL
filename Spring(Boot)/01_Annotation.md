@@ -1,5 +1,7 @@
 ## Spring Annotation
 ****
+### @Configuration
+- 스프링 환결설정 파일을 의미하는 어노테이션
 
 ### @CreatedDate
 - Entity가 생성되어 저장될 때 시간이 자동 저장됩니다.
@@ -16,6 +18,11 @@ public class Application {
     }
 }
 ```
+
+### @EnableWebSecurity
+- Spring Security 설정을 활성화 시켜줍니다.
+- 모든 요청 URL이 스프링 시큐리티의 제어를 받도록 만드는 어노테이션
+- 해당 어노테이션을 사용하면 내부적으로 `SpringSecurityFilterChain`이 동작하여 URL 필터가 적용된다.
 
 ### @GetMappring
 - @GetMapping은(`name`) `name`이란 주소로 이동하게 해줍니다.
@@ -155,7 +162,6 @@ public class HelloControllerTest {
 }
 ```
 
-
 ****
 ## Lombok
 ****
@@ -181,9 +187,11 @@ public class HelloControllerTest {
 
 ### `@Entity`
 
-### `@Enumerated`
+### `@Enumerated(EnumType.STRING)`
 - enum 타입 매핑
-- 
+- EnumType.STRING : 타입을 문자열로 저장
+- EnumType.ORDINAL : 타입을 숫자로 저장 
+
 ### `@GeneratedValue`
 - PK의 생성 방법을 매핑하는 애노테이션
   - strategy = GenerationType.AUTO : 방언에 따라 자동 지정, 기본

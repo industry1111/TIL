@@ -31,3 +31,8 @@
   - jdbc:h2:~/dbname
     - Local DB다. 직접 로컬에서 홈디렉토리로 가보면 db들이 생성되있는 것을 확인할 수 있다.
     해당 DB는 저장되며 계속 사용할 수 있다.
+
+### spring.profiles.include= XXXX
+- application.properties 파일에 설정된 프로파일을 추가한다.
+- 프로파일을 추가하면 application-XXXX.properties 파일을 읽어들인다.
+  -예)주로 OAuth2 인증을 사용하기 위해 application-oauth.properties 파일을 작성한뒤 application.properties 파일에 spring.profiles.include=oauth를 추가한다

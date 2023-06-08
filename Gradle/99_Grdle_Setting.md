@@ -27,4 +27,4 @@
                   - Doesn't say anything about its elements (required them packaged as a jar)
                   - Doesn't say anything about org.gradle.plugin.api-version (required '7.6.1')
 ...
-```
+
