@@ -3,6 +3,9 @@
 ### @Configuration
 - 스프링 환결설정 파일을 의미하는 어노테이션
 
+### @Component
+- 컴포넌트 스캔을 통해 스프링 빈으로 등록
+
 ### @CreatedDate
 - Entity가 생성되어 저장될 때 시간이 자동 저장됩니다.
 
@@ -35,6 +38,15 @@ public String hello() {
 }
 ```
 
+### @Interface
+- 이 파일을 어노테이션 클래스로 지정합니다.
+```java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Interface {
+}
+```
+
 ### @LastModifiedDate
 - 조회한 Entity의 값을 변경할 때 시간이 자동 저장됩니다.
 - 
@@ -56,6 +68,24 @@ public ResponseEntity<User> hello(@PathVariable int id) {
 
 ### @RequestBody
 - JSON으로 넘어온 데이터를 객체로 매핑해주는 어노테이션입니다.
+
+### @Retention(RetentionPolicy.RUNTIME)
+- 어노테이션의 범위를 지정
+- `RUNTIME`은 런타임까지 존재
+- `SOURCE`는 소스파일에만 존재
+- `CLASS`는 클래스파일까지 존재
+
+
+### @Target({ElementType.TYPE})
+- 어노테이션이 적용할 위치를 지정
+- `TYPE`은 클래스, 인터페이스, 열거형에 적용
+- `METHOD`는 메소드에 적용
+- `FIELD`는 필드에 적용
+- `PARAMETER`는 파라미터에 적용
+- `CONSTRUCTOR`는 생성자에 적용
+- `LOCAL_VARIABLE`는 지역변수에 적용
+- `ANNOTATION_TYPE`은 어노테이션에 적용
+- `PACKAGE`는 패키지에 적용
 
 
 ### `@RestController`
