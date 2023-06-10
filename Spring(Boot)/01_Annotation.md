@@ -111,58 +111,6 @@ public void performDatabaseOperation() {
 ## Test Annotation
 *****
 
-### @@ExtendWith(SpringExtension.class)
-- 테스트를 진행할 때 JUnit에 내장된 실행자 외에 다른 실행자를 실행시킵니다.
-
-### @LocalServerPort
-- 랜덤으로 새로운 포트를 생성하여 테스트를 진행합니다.
-```java
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class MyIntegrationTest {
-
-    @LocalServerPort
-    private int serverPort;
-
-    @Test
-    public void testServerPort() {
-      ...
-    }
-}
-
-```
-
-### @WebMvcTest
-- 여러 스프링 어노테이션 중, Web(Spring MVC)에 집중할 수 있는 어노테이션입니다.
-- 선언할 경우 `@Controller`, `@ControllerAdvice` 등을 사용할 수 있습니다.
-- 단, `@Service`, `@Component`, `@Repository` 등은 사용할 수 없습니다.
-  - **private MockMvc mvc**
-    - URL 및 HTTP 메서드를 이용한 테스트가 가능
-    - 응답의 상태, 헤더, 본문을 검증 할 수 있음
-```java
-...
-//MockMvc에 사용된 패키지
-import org.springframework.test.web.servlet.MockMvc;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-@ExtendWith(SpringExtension.class)
-@WebMvcTest(controllers = HelloController.class)
-public class HelloControllerTest {
-    
-    @Autowired
-    private MockMvc mvc;
-    
-    @Test
-    public void hello가_리턴된다() throws Exception {
-        String hello = "hello";
-        
-        mvc.perform(get("/hello"))                      //get("/hello")로 HTTP GET 요청
-                .andExpect(status().isOk())             //응답 상태코드가 200인지 확인
-                .andExpect(content().string(hello));    //응답 바디 내용이 hello인지 확인
-    }
-}
-```
 
 ### @AfterEach, @BeforeEach
 - `@AfterEach` : 단위 테스트가 끝날 때마다 수행되는 메소드를 지정
@@ -191,6 +139,63 @@ public class HelloControllerTest {
     }
 }
 ```
+
+### @@ExtendWith(SpringExtension.class)
+- 테스트를 진행할 때 JUnit에 내장된 실행자 외에 다른 실행자를 실행시킵니다.
+
+### @LocalServerPort
+- 랜덤으로 새로운 포트를 생성하여 테스트를 진행합니다.
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class MyIntegrationTest {
+
+    @LocalServerPort
+    private int serverPort;
+
+    @Test
+    public void testServerPort() {
+      ...
+    }
+}
+
+```
+
+### @WebMvcTest
+- 여러 스프링 어노테이션 중, Web(Spring MVC)에 집중할 수 있는 어노테이션입니다.
+- 선언할 경우 `@Controller`, `@ControllerAdvice` 등을 사용할 수 있습니다.
+- 단, `@Service`, `@Component`, `@Repository` 등은 사용할 수 없습니다.
+  - **private MockMvc mvc**
+    - URL 및 HTTP 메서드를 이용한 테스트가 가능
+    - 응답의 상태, 헤더, 본문을 검증 할 수 있음
+```java
+//MockMvc에 사용된 패키지
+import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = HelloController.class)
+public class HelloControllerTest {
+    
+    @Autowired
+    private MockMvc mvc;
+    
+    @Test
+    public void hello가_리턴된다() throws Exception {
+        String hello = "hello";
+        
+        mvc.perform(get("/hello"))                      //get("/hello")로 HTTP GET 요청
+                .andExpect(status().isOk())             //응답 상태코드가 200인지 확인
+                .andExpect(content().string(hello));    //응답 바디 내용이 hello인지 확인
+    }
+}
+```
+
+### @WithMockUser(roles = "USER")
+- 인증된 모의(가짜) 사용자를 만들어서 사용합니다.
+- roles에 권한을 추가할 수 있습니다.
+- ROLE_USER 권한을 가진 사용자가 API를 요청하는 것과 동일한 효과를 가집니다.
 
 ****
 ## Lombok
