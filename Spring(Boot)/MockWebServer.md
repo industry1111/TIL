@@ -49,4 +49,4 @@ public class PostsApiControllerTest {
 ```
 
 ### Reference
-[baeldung](https://www.baeldung.com/spring-mock-web-server)
+> [https://www.baeldung.com](https://www.baeldung.com/spring-mock-web-server)
