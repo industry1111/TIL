@@ -2,7 +2,6 @@
 ### 예상대진표 
 - [source](https://github.com/industry1111/algorithm/blob/main/src/main/java/programmers/leveltwo/ExpectedMatchups.java)
 
- 접근 방법
 1. a,b가 포함된 각각의 지수를 찾는다.(a가 3이라면 a의 지수는 2, b가 7이라면 지수는 3)
 2. 지수가 다를 경우 만나게되는 n번째 경기는 두 지수 중에 큰 지수의 값이다. (b가 7이고, a가 1~4의 값이면 7이 포함된 지수인 3번째 경기에서 a 와 b가 만나게 된다.)
 3. 같은 경우 a,b에 2<sup>n-1</sup>의 나머지로 치환한다.(딱 떨어지는 경우 2<sup>n-1</sup>이다.)
@@ -12,7 +11,6 @@
 ### 점프와 순간이동
 - [source](https://github.com/industry1111/algorithm/blob/main/src/main/java/programmers/leveltwo/JumpAndTeleport.java)
 
- 접근 방법
 1. 도착 지점을 d라고 할 때 d를 2로 나눈다.
    - 2로 나누는 이유는 가장 처음 점프를 무조건 1로 하고 중간에 점프를 한번 더하는것이 건전지 소모량을 줄일 수 있기 때문이다.
    - (d : 7 인 경우 빨간색 : 점프 , 파란색 : 순간이동)
@@ -26,7 +24,38 @@
 ### N개의 최소공배수
 - [source](https://github.com/industry1111/algorithm/blob/main/src/main/java/programmers/leveltwo/LeastCommonMultiple.java)
 
-    접근 방법
 1. 최소공배수를 구하는 방법은 두 수의 곱을 최대공약수로 나누는 것이다.
-2. 최대공약수를 구하는 방법은 유클리드 호제법을 사용한다.
+2. 유클리드 호제법이란?
+    - 두 수의 최대공약수를 구하는 알고리즘
+    - 두 수 a,b(a>b)가 있다고 할 때 a를 b로 나눈 나머지를 r이라고 한다면 a와 b의 최대공약수는 b와 r의 최대공약수와 같다.
+    - 이를 반복하면 두 수의 최대공약수를 구할 수 있다.
+    - 예를 들어 24와 16의 최대공약수를 구한다고 할 때
+        - 24 % 16 = 8
+        - 16 % 8 = 0
+        - 8 % 0 = 8
+        - 8이 최대공약수가 된다.
 
+### 요격시스템
+- [source](https://github.com/industry1111/algorithm/blob/main/src/main/java/programmers/leveltwo/MissileDefenseSystem.java)
+
+1. 미사일은 개구간(s,e)로 표현되며 s,e에서 발사되는 미사일로 요격 불가이기 떄문에 비교할 때 같다는 조건 제외
+2. e를 기준으로 배열 정렬
+3. 현재 미사일의 s보다 크면서 e보다 작거나 같을 경우 요격가능, 이 경우 e는 변경하지 않음
+4. 3번 조건을 만족하지 못할 경우, 미사일 발사 횟수 1증가 및 e변경 
+
+
+### 연속된 부분 수열의 합
+- [source](https://github.com/industry1111/algorithm/blob/main/src/main/java/programmers/leveltwo/dfs/calculateSum.java)
+
+1. k를 만족 했을 경우 길이(시작인데스 - 종료인덱스)값 설정
+    - 만족하는 경우의 수가 여러가지 일 경우를 가장 앞선 값들을 변경하지 않기 위해
+    - 길이가 0인 경우 바로 탈출
+2. 이중 for문을 이용하여 부분 수열의 합을 구함 
+#### 문제점 
+- 시간복잡도 O(n<sup>2</sup>)으로 인해 시간초과 발생
+#### 해결 
+- 부분 수열의 합을 구할 때 이전에 구한 부분 수열의 합을 이용하여 구함
+- k보다 수열의 합이 클 경우 작아질 때까지 이전에 구한 부분 수열의 합을 빼고 다음 인덱스의 값을 더함 
+- 시간복잡도 O(N)
+   
+   
