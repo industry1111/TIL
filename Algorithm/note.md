@@ -1,4 +1,23 @@
 ## 프로그래머스 레벨 2
+
+### 피보나치
+
+- [source](https://github.com/industry1111/algorithm/blob/main/src/main/java/programmers/leveltwo/dfsBfs/Fibonacci.java)
+
+분배 법칙 :
+-  나머지 연산에서 적용될 수 있는 중요한 성질
+-  덧셈과 곱셈 사이에서 모듈러 연산이 적용될 때 사용
+
+1. 덧셈의 분배 법칙:
+   - (a + b) % n = ((a % n) + (b % n)) % n
+2. 곱셈의 분배 법칙:
+   - (a * b) % n = ((a % n) * (b % n)) % n
+
+   - 여기서, a와 b는 임의의 정수이며, n은 나누는 수. %는 모듈러 연산을 나타낸다.
+
+- 분배 법칙을 사용하면, 덧셈이나 곱셈을 수행하기 전에 모듈러 연산을 수행한 후 결과를 다시 모듈러 연산할 수 있으며.
+- 이를 통해 중간 계산 결과의 범위를 제한하고, 오버플로우나 값의 변형을 방지할 수 있다.
+
 ### 예상대진표 
 - [source](https://github.com/industry1111/algorithm/blob/main/src/main/java/programmers/leveltwo/ExpectedMatchups.java)
 
@@ -59,3 +78,12 @@
 - 시간복잡도 O(N)
    
    
+### 멀리뛰기
+1. 무식하게 1~6까지 뛰는 경우의 수를 구하다보니 피보나치인걸 확인 후 이번엔 DP로 품..
+2. 해당 문제의 경우 점화식으로 판단할 수 있다는걸 알게됨
+3. 점화식 : f(n) = f(n-1) + f(n-2) (n>=2)
+      - [n - 1]번째 칸에서 1칸을 뛰어서 n번째 칸에 도착했다.
+      - [n - 2]번째 칸에서 2칸을 뛰어서 n번째 칸에 도착했다.
+![fibonacci.png](img%2Ffibonacci.png)
+- 출처
+  - [나무위키](https://namu.wiki/w/피보나치%20수열#s-7.1)
