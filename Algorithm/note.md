@@ -79,6 +79,7 @@
    
    
 ### 멀리뛰기
+- [source](https://github.com/industry1111/algorithm/blob/main/src/main/java/programmers/leveltwo/Jump.java)
 1. 무식하게 1~6까지 뛰는 경우의 수를 구하다보니 피보나치인걸 확인 후 이번엔 DP로 품..
 2. 해당 문제의 경우 점화식으로 판단할 수 있다는걸 알게됨
 3. 점화식 : f(n) = f(n-1) + f(n-2) (n>=2)
@@ -87,3 +88,21 @@
 ![fibonacci.png](img%2Ffibonacci.png)
 - 출처
   - [나무위키](https://namu.wiki/w/피보나치%20수열#s-7.1)
+
+### 귤고르기
+- [source](https://github.com/industry1111/algorithm/blob/main/src/main/java/programmers/leveltwo/TangerinePicker.java)
+1. Map을 이용하여 사이즈별 개수를 구함
+2. 개수만 담을 List를 선언하여 역순으로 정렬
+3. 담아야하는 개수 k에서 해당 List를 이용하여 빼면서 카운트 증가
+
+### 광물캐기
+- [source](https://github.com/industry1111/algorithm/blob/main/src/main/java/programmers/leveltwo/MineralPick.java)
+1. 캘 수 있는 광물의 개수를 구함 (광물이 남아 있더라도 곡괘이가 없으면 중지해야하기 때문에)
+2. 한 곡괭이다 캘 수 있는 광물은 5개이므로 5개씩 묶어서 피로도를 저장, 이 때 광물의 개수도 같이 저장 
+   - 다이아몬드 곡괭이 1개, 철 곡괭이 1개를 가지고 있을 경우
+   - {"iron","iron","iron","iron","iron","diamond"} 철 5개,다이아몬드 1개를 캘 때 소모되는 피로도는 6이어야함
+   - 피로도만을 가지고는 판단이 불가하기 때문에 광물의 개수도 저장
+3. 피로도와 광물의 개수를 가진 이차원 배열을 총 피로도가 많고, 광물의 개수가 적은 순으로 정렬
+   - 같은 피로도일 때 광물의 개수가 적은게 더 희귀한 광물
+4. 가지고 있는 곡괭이이로 피로도 계산
+
