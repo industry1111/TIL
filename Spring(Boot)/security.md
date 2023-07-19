@@ -1,5 +1,5 @@
 ### build.gradle 설정
-```gradle
+```groovy
     //소셜로그인 등 클라이언트입장에서 소셜 기능 구현시 필요한 의존성
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation('org.springframework.boot:spring-boot-starter-security')
